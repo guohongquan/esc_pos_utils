@@ -542,16 +542,17 @@ class Generator {
         final List<bool> isLexemeChinese = list[1];
 
         // Print each lexeme using codetable OR kanji
+        int? tempColInd = colInd;
         for (var j = 0; j < lexemes.length; ++j) {
           bytes += _text(
             _encode(lexemes[j], isKanji: isLexemeChinese[j]),
             styles: cols[i].styles,
-            colInd: colInd,
+            colInd: tempColInd,
             colWidth: cols[i].width,
             isKanji: isLexemeChinese[j],
           );
           // Define the absolute position only once (we print one line only)
-          // colInd = null;
+          tempColInd = null;
         }
       }
     }
